@@ -12,3 +12,48 @@ header{
     background: linear-gradient( #4CAF50, #fafafa);
     color: rgb(0, 0, 0);
 }
+
+.container{
+    display: flex;
+    gap:10px;
+    margin: 10px;
+    #c-red{
+        width: 50px;
+        height: 50px;
+        background: red;
+        border: black solid 3px;
+    }
+    #c-yellow{
+        width: 50px;
+        height: 50px;
+        background: yellow;
+        border: black solid 3px;
+    }
+    #c-green{
+        width: 50px;
+        height: 50px;
+        background: green;
+        border: black solid 3px;
+    }
+    #c-blue{
+        width: 50px;
+        height: 50px;
+        background: blue;
+        border: black solid 3px;
+    }
+    #c-purple{
+        width: 50px;
+        height: 50px;
+        background: purple;
+        border: black solid 3px;
+    }
+    #c-orange{
+        width: 50px;
+        height: 50px;
+        background: orange;
+        border: black solid 3px;
+    }
+}
+.container div:hover{
+    cursor: pointer;
+}
