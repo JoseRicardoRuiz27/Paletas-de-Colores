@@ -1,10 +1,10 @@
 const header = document.querySelector('header');
 const colorContainer = document.querySelector('.container');
 // Inicializar Pickr
+// Inicializar Pickr
 const pickr = Pickr.create({
-    el: '#color-picker', // El contenedor donde irá el selector
-    theme: 'classic', // Puedes elegir entre 'classic', 'monolith', 'nano'
-
+    el: '#color-picker',
+    theme: 'classic',
     swatches: [
         'rgba(244, 67, 54, 1)',
         'rgba(233, 30, 99, 0.95)',
@@ -21,14 +21,10 @@ const pickr = Pickr.create({
         'rgba(255, 235, 59, 0.95)',
         'rgba(255, 193, 7, 1)'
     ],
-
     components: {
-        // Main components
         preview: true,
         opacity: true,
         hue: true,
-
-        // Input / output Options
         interaction: {
             hex: true,
             rgba: true,
@@ -36,6 +32,30 @@ const pickr = Pickr.create({
             save: true
         }
     }
+});
+
+// Obtener los elementos de la UI donde se mostrarán los valores
+const hexValueElement = document.getElementById('hex-value');
+const rgbaValueElement = document.getElementById('rgba-value');
+// Escuchar el evento 'change' de Pickr para actualizar los valores
+pickr.on('change', (color) => {
+    const hexColor = color.toHEXA().toString();  // Obtener el valor en HEXA
+
+    // Obtener los valores en RGBA y redondearlos a 2 decimales
+    const rgbaArray = color.toRGBA();
+    const r = Math.round(rgbaArray[0]);          // Valor de R (Red)
+    const g = Math.round(rgbaArray[1]);          // Valor de G (Green)
+    const b = Math.round(rgbaArray[2]);          // Valor de B (Blue)
+    const a = Math.round(rgbaArray[3] * 100) / 100;  // Valor de A (Alpha) con 2 decimales
+
+    const rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+    // Actualizar el contenido de la UI
+    hexValueElement.textContent = hexColor;
+    rgbaValueElement.textContent = rgbaColor;
+    
+    // También puedes cambiar dinámicamente el fondo del header o de otro elemento
+    document.querySelector('header').style.background = `linear-gradient(${hexColor}, white)`;
 });
 
 pickr.on('change', (color) => {

@@ -26,17 +26,15 @@ header{
         height: 50px;
     }
 }
-p{
-    font-size: 20px;
-    margin: 10px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-}
-button{
-    margin: auto;
-    width: 100px;
-    height: 30px;
-}
+    p{
+        font-size: 20px;
+        margin: 10px;
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .container{
