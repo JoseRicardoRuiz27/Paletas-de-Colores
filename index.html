@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paleta de Colores</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script src="script.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
 </head>
 <body>
     <header>
-        <h1>Paleta de Colores</h1>
+        <h1>Selector de Color</h1>
     </header>
-    
-    <div id="color">
-        <input type="color" id="color">
+    <div class="containerPicker">
+        <div class="pickr">
+            <div id="color-picker"></div>
+        </div>
+        <p>Selecciona un color</p>
+        <button>Copiar</button>
     </div>
+
     <div class="container">
         <div id="c-red"></div>
         <div id="c-yellow"></div>
@@ -23,5 +27,11 @@
         <div id="c-purple"></div>
         <div id="c-orange"></div>
     </div>
+    <div class="agregar_colores">
+        <input type="color" id="nuevo_color">
+        <button id="agregar_color">Agregar</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
+    <script src="script.js"></script>
 </body>
 </html>
