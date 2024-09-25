@@ -1,5 +1,9 @@
 const header = document.querySelector('header');
 const colorContainer = document.querySelector('.container');
+const hexValue = document.getElementById('hex-value');
+const rgbaValue = document.getElementById('rgba-value');
+const copyIcons = document.querySelectorAll('.icono');
+
 // Inicializar Pickr
 // Inicializar Pickr
 const pickr = Pickr.create({
@@ -34,6 +38,25 @@ const pickr = Pickr.create({
     }
 });
 
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Texto copiado al portapapeles: ' + text);
+    }).catch(err => {
+        console.error('Error al copiar al portapapeles', err);
+    });
+}
+// Añadir eventos a los iconos de copiar
+copyIcons.forEach((icon, index) => {
+    icon.addEventListener('click', () => {
+        if (index === 0) {
+            // Si es el primer icono, copia el valor HEX
+            copyToClipboard(hexValue.textContent);
+        } else if (index === 1) {
+            // Si es el segundo icono, copia el valor RGBA
+            copyToClipboard(rgbaValue.textContent);
+        }
+    });
+});
 // Obtener los elementos de la UI donde se mostrarán los valores
 const hexValueElement = document.getElementById('hex-value');
 const rgbaValueElement = document.getElementById('rgba-value');

@@ -37,6 +37,10 @@ header{
     }
 }
 
+.icono:hover{
+    cursor: pointer;
+}
+
 .container{
     display: flex;
     gap:10px;
