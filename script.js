@@ -1,5 +1,5 @@
 const header = document.querySelector('header');
-const colorContainer = document.querySelector('.container');
+const colorContainer = document.querySelector('.palette');
 const hexValue = document.getElementById('hex-value');
 const rgbaValue = document.getElementById('rgba-value');
 const copyIcons = document.querySelectorAll('.icono');

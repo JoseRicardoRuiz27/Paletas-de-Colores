@@ -9,8 +9,8 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 15vh;
-    background: linear-gradient( #4CAF50, #fafafa);
+    height: 20vh;
+    background: linear-gradient( #fafafa, #fafafa);
     color: rgb(0, 0, 0);
 }
 .containerPicker{
@@ -43,45 +43,23 @@ header{
 
 .container{
     display: flex;
-    gap:10px;
-    margin: 10px;
-    #c-red{
-        width: 50px;
-        height: 50px;
-        background: red;
-        border: black solid 3px;
-    }
-    #c-yellow{
-        width: 50px;
-        height: 50px;
-        background: yellow;
-        border: black solid 3px;
-    }
-    #c-green{
-        width: 50px;
-        height: 50px;
-        background: green;
-        border: black solid 3px;
-    }
-    #c-blue{
-        width: 50px;
-        height: 50px;
-        background: blue;
-        border: black solid 3px;
-    }
-    #c-purple{
-        width: 50px;
-        height: 50px;
-        background: purple;
-        border: black solid 3px;
-    }
-    #c-orange{
-        width: 50px;
-        height: 50px;
-        background: orange;
-        border: black solid 3px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(aquamarine, white);
+    .palette{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        height: 50vh;
+        margin-top: 10px;
+            div{
+                border: black solid 2px;
+        }
     }
 }
-.container div:hover{
+.palette div:hover{
     cursor: pointer;
 }
