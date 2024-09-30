@@ -114,6 +114,14 @@ agregarColorButton.addEventListener('click', () => {
     nuevoDiv.classList.add('color'); // Agregar la clase 'color' al elemento DIV
     nuevoDiv.style.backgroundColor = nuevoColor; // Asignar el color de fondo
 
+    // Crear un elemento IMG para el icono
+    const iconoImg = document.createElement('img');
+    iconoImg.src = './icono/icons8-copiar-24.png'; // Asignar la ruta del icono
+    iconoImg.alt = 'Icono de copiar'; // Texto alternativo
+
+    // Añadir la imagen dentro del DIV
+    nuevoDiv.appendChild(iconoImg);
+
     // Añadir el evento de copiar para el nuevo color
     nuevoDiv.addEventListener('click', () => {
         copyToClipboard(nuevoColor);
