@@ -70,6 +70,9 @@ header{
 }
 
 .agregar_colores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin-top: 20px;
 }
@@ -77,9 +80,16 @@ header{
 .agregar_colores input {
     padding: 10px;
     margin-right: 10px;
+    height: 50px;
 }
 
 .agregar_colores button {
     padding: 10px 20px;
     cursor: pointer;
+}
+#mas-colores {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }

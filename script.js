@@ -7,8 +7,8 @@ const copyIcons = document.querySelectorAll('.icono');
 const nuevoColorInput = document.getElementById('nuevo_color');
 const agregarColorButton = document.getElementById('agregar_color');
 const masColores = document.getElementById('mas-colores');
+const colores = document.querySelectorAll('.color');
 
-// Inicializar Pickr
 // Inicializar Pickr
 const pickr = Pickr.create({
     el: '#color-picker',
@@ -49,6 +49,7 @@ function copyToClipboard(text) {
         console.error('Error al copiar al portapapeles', err);
     });
 }
+
 // Añadir eventos a los iconos de copiar
 copyIcons.forEach((icon, index) => {
     icon.addEventListener('click', () => {
@@ -61,9 +62,11 @@ copyIcons.forEach((icon, index) => {
         }
     });
 });
+
 // Obtener los elementos de la UI donde se mostrarán los valores
 const hexValueElement = document.getElementById('hex-value');
 const rgbaValueElement = document.getElementById('rgba-value');
+
 // Escuchar el evento 'change' de Pickr para actualizar los valores
 pickr.on('change', (color) => {
     const hexColor = color.toHEXA().toString();  // Obtener el valor en HEXA
@@ -80,31 +83,41 @@ pickr.on('change', (color) => {
     // Actualizar el contenido de la UI
     hexValueElement.textContent = hexColor;
     rgbaValueElement.textContent = rgbaColor;
-    
-    // También puedes cambiar dinámicamente el fondo del header o de otro elemento
-    document.querySelector('header').style.background = `linear-gradient(${hexColor}, white)`;
+
+    // Cambiar dinámicamente el fondo del header
+    header.style.background = `linear-gradient(${hexColor}, white)`;
 });
 
-pickr.on('change', (color) => {
-    const selectedColor = color.toHEXA().toString();
-    document.querySelector('header').style.background = `linear-gradient(${selectedColor}, white)`;
-});
-
-
+// Escuchar clics en el colorContainer
 colorContainer.addEventListener('click', (event) => {
-    if(event.target.tagName === 'DIV'){
+    if (event.target.tagName === 'DIV') {
         const selectedColor = window.getComputedStyle(event.target).backgroundColor;
         header.style.background = `linear-gradient(${selectedColor}, #fafafa)`;
+        copyToClipboard(selectedColor); // Copiar color al portapapeles
     }
-})
+});
 
+// Añadir funcionalidad de copiar al hacer clic en los colores existentes
+colores.forEach(colorDiv => {
+    colorDiv.addEventListener('click', () => {
+        const selectedColor = window.getComputedStyle(colorDiv).backgroundColor;
+        copyToClipboard(selectedColor);
+    });
+});
+
+// Funcionalidad para agregar nuevos colores
 agregarColorButton.addEventListener('click', () => {
     const nuevoColor = nuevoColorInput.value; // Obtener el valor del input
 
     // Crear un elemento DIV con el color seleccionado
-    nuevoDiv = document.createElement('div');
-    nuevoDiv.classList.add('color');// Agregar la clase 'color' al elemento DIV
-    nuevoDiv.style.backgroundColor = nuevoColor; //asignar el color de fondo
+    const nuevoDiv = document.createElement('div');
+    nuevoDiv.classList.add('color'); // Agregar la clase 'color' al elemento DIV
+    nuevoDiv.style.backgroundColor = nuevoColor; // Asignar el color de fondo
+
+    // Añadir el evento de copiar para el nuevo color
+    nuevoDiv.addEventListener('click', () => {
+        copyToClipboard(nuevoColor);
+    });
 
     masColores.appendChild(nuevoDiv); // Agregar el elemento DIV al elemento 'mas-colores'
-})
+});
