@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paleta de Colores</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
 </head>
+
 <body>
     <header>
         <h1>Selector de Color</h1>
@@ -16,7 +19,7 @@
             <div id="color-picker"></div>
         </div>
         <p>Selecciona un color</p>
-    <div class="color-values"></div>
+        <div class="color-values"></div>
         <p>Valor HEX: <span class="color-copy" id="hex-value">#000000</span>
             <img class="icono" src="icono/icons8-copiar-24.png" alt="">
         </p>
@@ -38,24 +41,29 @@
         </div>
 
         <!-- Paleta de Colores Comunes -->
-          <h3>Colores Comunes</h3>
+        <h3>Colores Comunes</h3>
         <div class="palette">
-            <div class="color" style="background-color: #FF5733; width: 50px; height: 50px;"></div> <!-- Rojo Anaranjado -->
+            <div class="color" style="background-color: #FF5733; width: 50px; height: 50px;"></div>
+            <!-- Rojo Anaranjado -->
             <div class="color" style="background-color: #C70039; width: 50px; height: 50px;"></div> <!-- Rojo Oscuro -->
             <div class="color" style="background-color: #900C3F; width: 50px; height: 50px;"></div> <!-- Burdeos -->
-            <div class="color" style="background-color: #581845; width: 50px; height: 50px;"></div> <!-- Violeta Oscuro -->
-            <div class="color" style="background-color: #FFC300; width: 50px; height: 50px;"></div> <!-- Amarillo Mostaza -->
+            <div class="color" style="background-color: #581845; width: 50px; height: 50px;"></div>
+            <!-- Violeta Oscuro -->
+            <div class="color" style="background-color: #FFC300; width: 50px; height: 50px;"></div>
+            <!-- Amarillo Mostaza -->
         </div>
-            <h3>Mas Colores</h3>
+
+        <h3>Mas Colores</h3>
+        <div class="agregar_colores">
+            <input type="color" id="nuevo_color">
+            <button id="agregar_color">Agregar</button>
+        </div>
         <div class="palette">
-            <div class="color"></div>
+            <div class="color" id="mas-colores"></div>
         </div>
-        </main>
-    <div class="agregar_colores">
-        <input type="color" id="nuevo_color">
-        <button id="agregar_color">Agregar</button>
-    </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

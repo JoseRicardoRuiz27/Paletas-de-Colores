@@ -4,6 +4,10 @@ const hexValue = document.getElementById('hex-value');
 const rgbaValue = document.getElementById('rgba-value');
 const copyIcons = document.querySelectorAll('.icono');
 
+const nuevoColorInput = document.getElementById('nuevo_color');
+const agregarColorButton = document.getElementById('agregar_color');
+const masColores = document.getElementById('mas-colores');
+
 // Inicializar Pickr
 // Inicializar Pickr
 const pickr = Pickr.create({
@@ -94,3 +98,13 @@ colorContainer.addEventListener('click', (event) => {
     }
 })
 
+agregarColorButton.addEventListener('click', () => {
+    const nuevoColor = nuevoColorInput.value; // Obtener el valor del input
+
+    // Crear un elemento DIV con el color seleccionado
+    nuevoDiv = document.createElement('div');
+    nuevoDiv.classList.add('color');// Agregar la clase 'color' al elemento DIV
+    nuevoDiv.style.backgroundColor = nuevoColor; //asignar el color de fondo
+
+    masColores.appendChild(nuevoDiv); // Agregar el elemento DIV al elemento 'mas-colores'
+})
