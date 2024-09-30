@@ -42,23 +42,28 @@ header{
 }
 
 .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     background: linear-gradient(aquamarine, white);
-    .palette{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        height: 50vh;
-        margin-top: 10px;
-            div{
-                border: black solid 2px;
+        .palette {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }h3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            font-size: 24px;
+            color: #333;
         }
-    }
+        .color {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
 }
 .palette div:hover{
     cursor: pointer;
