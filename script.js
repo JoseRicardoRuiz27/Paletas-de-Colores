@@ -3,7 +3,6 @@ const colorContainer = document.querySelector('.palette');
 const hexValue = document.getElementById('hex-value');
 const rgbaValue = document.getElementById('rgba-value');
 const copyIcons = document.querySelectorAll('.icono');
-
 const nuevoColorInput = document.getElementById('nuevo_color');
 const agregarColorButton = document.getElementById('agregar_color');
 const masColores = document.getElementById('mas-colores');
@@ -54,47 +53,53 @@ function copyToClipboard(text) {
 copyIcons.forEach((icon, index) => {
     icon.addEventListener('click', () => {
         if (index === 0) {
-            // Si es el primer icono, copia el valor HEX
             copyToClipboard(hexValue.textContent);
         } else if (index === 1) {
-            // Si es el segundo icono, copia el valor RGBA
             copyToClipboard(rgbaValue.textContent);
         }
     });
 });
 
-// Obtener los elementos de la UI donde se mostrarán los valores
-const hexValueElement = document.getElementById('hex-value');
-const rgbaValueElement = document.getElementById('rgba-value');
+// Cargar colores guardados del LocalStorage al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const coloresGuardados = JSON.parse(localStorage.getItem('colores')) || [];
+    coloresGuardados.forEach(color => crearColorDiv(color));
+});
+
+function crearColorDiv(color) {
+    const nuevoDiv = document.createElement('div');
+    nuevoDiv.classList.add('color');
+    nuevoDiv.style.backgroundColor = color;
+
+    const iconoImg = document.createElement('img');
+    iconoImg.src = './icono/icons8-copiar-24.png';
+    iconoImg.alt = 'Icono de copiar';
+
+    nuevoDiv.appendChild(iconoImg);
+
+    nuevoDiv.addEventListener('click', () => {
+        copyToClipboard(color);
+    });
+
+    masColores.appendChild(nuevoDiv);
+}
 
 // Escuchar el evento 'change' de Pickr para actualizar los valores
 pickr.on('change', (color) => {
-    const hexColor = color.toHEXA().toString();  // Obtener el valor en HEXA
+    const hexColor = color.toHEXA().toString();
 
-    // Obtener los valores en RGBA y redondearlos a 2 decimales
     const rgbaArray = color.toRGBA();
-    const r = Math.round(rgbaArray[0]);          // Valor de R (Red)
-    const g = Math.round(rgbaArray[1]);          // Valor de G (Green)
-    const b = Math.round(rgbaArray[2]);          // Valor de B (Blue)
-    const a = Math.round(rgbaArray[3] * 100) / 100;  // Valor de A (Alpha) con 2 decimales
+    const r = Math.round(rgbaArray[0]);
+    const g = Math.round(rgbaArray[1]);
+    const b = Math.round(rgbaArray[2]);
+    const a = Math.round(rgbaArray[3] * 100) / 100;
 
     const rgbaColor = `rgba(${r}, ${g}, ${b}, ${a})`;
 
-    // Actualizar el contenido de la UI
-    hexValueElement.textContent = hexColor;
-    rgbaValueElement.textContent = rgbaColor;
+    hexValue.textContent = hexColor;
+    rgbaValue.textContent = rgbaColor;
 
-    // Cambiar dinámicamente el fondo del header
     header.style.background = `linear-gradient(${hexColor}, white)`;
-});
-
-// Escuchar clics en el colorContainer
-colorContainer.addEventListener('click', (event) => {
-    if (event.target.tagName === 'DIV') {
-        const selectedColor = window.getComputedStyle(event.target).backgroundColor;
-        header.style.background = `linear-gradient(${selectedColor}, #fafafa)`;
-        copyToClipboard(selectedColor); // Copiar color al portapapeles
-    }
 });
 
 // Añadir funcionalidad de copiar al hacer clic en los colores existentes
@@ -105,27 +110,15 @@ colores.forEach(colorDiv => {
     });
 });
 
-// Funcionalidad para agregar nuevos colores
+// Funcionalidad para agregar nuevos colores y guardarlos en LocalStorage
 agregarColorButton.addEventListener('click', () => {
-    const nuevoColor = nuevoColorInput.value; // Obtener el valor del input
+    const nuevoColor = nuevoColorInput.value;
 
-    // Crear un elemento DIV con el color seleccionado
-    const nuevoDiv = document.createElement('div');
-    nuevoDiv.classList.add('color'); // Agregar la clase 'color' al elemento DIV
-    nuevoDiv.style.backgroundColor = nuevoColor; // Asignar el color de fondo
+    if (nuevoColor) {
+        crearColorDiv(nuevoColor);
 
-    // Crear un elemento IMG para el icono
-    const iconoImg = document.createElement('img');
-    iconoImg.src = './icono/icons8-copiar-24.png'; // Asignar la ruta del icono
-    iconoImg.alt = 'Icono de copiar'; // Texto alternativo
-
-    // Añadir la imagen dentro del DIV
-    nuevoDiv.appendChild(iconoImg);
-
-    // Añadir el evento de copiar para el nuevo color
-    nuevoDiv.addEventListener('click', () => {
-        copyToClipboard(nuevoColor);
-    });
-
-    masColores.appendChild(nuevoDiv); // Agregar el elemento DIV al elemento 'mas-colores'
+        const coloresGuardados = JSON.parse(localStorage.getItem('colores')) || [];
+        coloresGuardados.push(nuevoColor);
+        localStorage.setItem('colores', JSON.stringify(coloresGuardados));
+    }
 });
